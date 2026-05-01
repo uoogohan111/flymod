@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "flymod",
+  "version": "1.0.0",
+  "name": "FlyMod",
+  "description": "Adds a /fly command to toggle flight for the executing player.",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.flymod.FlyMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11"
+  }
+}
