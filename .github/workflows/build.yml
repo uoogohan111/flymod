@@ -5,7 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch: # allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: '8.11'
+          gradle-version: '9.2'
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Generate Gradle wrapper
-        run: gradle wrapper --gradle-version 8.11
+        run: gradle wrapper --gradle-version 9.2
 
       - name: Build mod
         run: ./gradlew build
