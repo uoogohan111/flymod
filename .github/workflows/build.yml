@@ -21,11 +21,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '9.2'
-
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
@@ -36,8 +31,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Generate Gradle wrapper
-        run: gradle wrapper --gradle-version 9.2
+      - name: Install Gradle 8.13 and generate wrapper
+        run: |
+          curl -fsSL https://services.gradle.org/distributions/gradle-8.13-bin.zip -o /tmp/gradle.zip
+          unzip -q /tmp/gradle.zip -d /tmp/gradle-dist
+          /tmp/gradle-dist/gradle-8.13/bin/gradle wrapper --gradle-version 8.13
+          chmod +x gradlew
 
       - name: Build mod
         run: ./gradlew build
